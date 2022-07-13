@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj przepis</title>
+</head>
+<body>
+
+<main layout:fragment="content">
+    <div class="add-form-hero-img">
+        <div class="bg-shadow"></div>
+        <div class="hero-text">
+            <form th:action="@{/save-recipe}" th:object="${recipe}" method="post">
+                <p>Dodaj nowy przepis:</p>
+                <div class="form-group">
+                    <label for="recipe-name">Tytuł przepisu:</label>
+                    <input type="text" th:field="*{recipeName}" class="form-control" id="recipe-name"
+                           placeholder="Nazwa przepisu">
+                </div>
+                <div class="form-group">
+                    <label for="recipe-ingredients">Składniki</label>
+                    <textarea th:field="*{ingredients}" class="form-control" id="recipe-ingredients"
+                              placeholder="Lista składników"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="recipe-description">Opis przepisu:</label>
+                    <textarea th:field="*{description}" class="form-control" id="recipe-description"
+                              placeholder="Krótki opis przepisu"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="recipe-category">Kategoria:</label>
+                    <select class="form-select" id="recipe-category" th:field="*{category}">
+                        <option th:each="categoryValue: ${categories}"
+                                th:value="${categoryValue.categoryTitle}" th:text="${categoryValue.categoryTitle}"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-outline-warning">Zapisz</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

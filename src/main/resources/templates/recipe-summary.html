@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Szczegóły przepisu</title>
+</head>
+<body>
+
+<main layout:fragment="content" th:object="${recipe}">
+    <div class="hero-img">
+        <div class="bg-shadow"></div>
+        <div class="hero-text">
+            <div class="container">
+                <h1 th:text="*{recipeName}">Tytuł</h1>
+                <p th:text="*{'Składniki: '+ ingredients}"></p>
+                <p th:text="*{description}">Opis</p>
+                <form th:action="@{/give-like}" th:method="post" id="like-form">
+                    <input type="hidden" name="recipeId" th:value="*{id}">
+                    <button type="submit" id="like-button" class='btn btn-outline-warning'> Lubię to
+                        <i class="fa-solid fa-thumbs-up"></i>
+                    </button>
+                <a th:href="@{/edit-recipe/{recipeId}(recipeId=${recipe.id})}" class="btn btn-warning">Edytuj
+                    przepis</a>
+                <a th:href="@{/delete-recipe/{recipeId}(recipeId=${recipe.id})}" class="btn btn-danger ml-2">Usuń
+                    przepis</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>
