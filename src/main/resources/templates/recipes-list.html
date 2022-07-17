@@ -9,7 +9,7 @@
 <body>
 
 <main layout:fragment="content">
-    <div th:classappend="|${categoryShortcut != 'all' && categoryShortcut != 'top' ? categoryShortcut+'-hero-img': 'hero-img'}|">
+    <div th:classappend="|${categoryShortcut != null ? categoryShortcut+'-hero-img': 'hero-img'}|">
         <div class="bg-shadow"></div>
         <div class="hero-text">
             <div class="table-responsive container">

@@ -3,15 +3,16 @@ package com.example.kochbuch.service;
 import com.example.kochbuch.category.Category;
 import com.example.kochbuch.category.CategoryDto;
 import com.example.kochbuch.category.CategoryRepository;
-import com.example.kochbuch.exception.CategoryNotFoundException;
 import com.example.kochbuch.exception.RecipeNotFoundException;
 import com.example.kochbuch.recipe.Recipe;
-import com.example.kochbuch.recipe.RecipeDto;
+import com.example.kochbuch.recipe.RecipeDescriptionDto;
+import com.example.kochbuch.recipe.RecipeItemListDto;
 import com.example.kochbuch.recipe.RecipeRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class KochBuchService {
@@ -28,72 +29,59 @@ public class KochBuchService {
         return categoryRepository.findAll().stream().map(CategoryDto::new).toList();
     }
 
-    public List<RecipeDto> getAllRecipes() {
-        return recipeRepository.findAll().stream().map(RecipeDto::new).toList();
+    public Optional<CategoryDto> getCategoryByCategoryShortcut(String categoryShortcut) {
+        return categoryRepository.findCategoryByCategoryShortcutIgnoreCase(categoryShortcut).map(CategoryDto::new);
     }
 
-    public List<RecipeDto> getAllRecipesFromGivenCategory(Category category) {
-        return category.getRecipes().stream().map(RecipeDto::new).toList();
+    public List<RecipeItemListDto> getAllRecipes() {
+        return recipeRepository.findAll().stream().map(RecipeItemListDto::new).toList();
     }
 
-    public RecipeDto findRecipeById(Long id) {
+    public List<RecipeItemListDto> getAllRecipesFromGivenCategory(CategoryDto category) {
+        Category cat = categoryRepository.findById(category.getId()).orElseThrow();
+        return recipeRepository.findAllByCategory(cat).stream().map(RecipeItemListDto::new).toList();
+    }
+
+    public RecipeDescriptionDto findRecipeById(Long id) {
         Recipe recipe = recipeRepository.findById(id).orElseThrow(RecipeNotFoundException::new);
-        return new RecipeDto(recipe.getId(), recipe.getRecipeName(), recipe.getIngredients(), recipe.getDescription(),
-                recipe.getNumberOfLikes(), recipe.getCategory());
+        return new RecipeDescriptionDto(recipe.getId(), recipe.getRecipeName(), recipe.getIngredients(), recipe.getDescription(),
+                recipe.getCategory().getId());
     }
 
-    public List<RecipeDto> findTopRecipes(int size) {
+    public List<RecipeItemListDto> findTopRecipes(int size) {
         Pageable page = Pageable.ofSize(size);
         return recipeRepository.findTopByNumberOfLikes(page).stream()
-                .map(RecipeDto::new)
+                .map(RecipeItemListDto::new)
                 .toList();
-
     }
 
     @Transactional
-    public void addRecipe(RecipeDto recipeDto) {
+    public void addRecipe(RecipeDescriptionDto recipeDto) {
+        Category category = categoryRepository.findById(recipeDto.getCategoryId()).orElseThrow();
         Recipe recipe = new Recipe(recipeDto.getRecipeName(),
                 recipeDto.getIngredients(),
                 recipeDto.getDescription(),
-                recipeDto.getCategory());
+                category);
         recipeRepository.save(recipe);
     }
 
     @Transactional
-    public void updateRecipe(RecipeDto recipeDto) {
+    public void updateRecipe(RecipeDescriptionDto recipeDto) {
+        Category category = categoryRepository.findById(recipeDto.getCategoryId()).orElseThrow();
         Recipe recipe = recipeRepository
                 .findById(recipeDto.getId())
                 .orElseThrow(RecipeNotFoundException::new);
         recipe.setRecipeName(recipeDto.getRecipeName());
         recipe.setIngredients(recipeDto.getIngredients());
         recipe.setDescription(recipeDto.getDescription());
-        recipe.setCategory(recipeDto.getCategory());
+        recipe.setCategory(category);
     }
 
     @Transactional
-    public void deleteById(Long id) {
+    public void deleteRecipeById(Long id) {
         recipeRepository.deleteById(id);
     }
 
-    public Category getCategoryByCategoryTitle(String categoryTitle) {
-        List<Category> categories = categoryRepository.findAll();
-        for (Category category : categories) {
-            if (category.getCategoryTitle().equals(categoryTitle)) {
-                return category;
-            }
-        }
-        throw new CategoryNotFoundException();
-    }
-
-    public Category getCategoryByCategoryShortcut(String categoryShortcut) {
-        List<Category> categories = categoryRepository.findAll();
-        for (Category category : categories) {
-            if (category.getCategoryShortcut().equals(categoryShortcut)) {
-                return category;
-            }
-        }
-        throw new CategoryNotFoundException();
-    }
 
     public void addLikeToRecipe(Long recipeId) {
         Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(RecipeNotFoundException::new);

@@ -1,9 +1,5 @@
 package com.example.kochbuch.category;
 
-import com.example.kochbuch.recipe.Recipe;
-
-import java.util.List;
-
 public class CategoryDto {
 
     private Long id;
@@ -12,14 +8,12 @@ public class CategoryDto {
 
     private String categoryTitle;
     private String description;
-    private List<Recipe> recipes;
 
     public CategoryDto(Category category) {
         this.id = category.getId();
         this.categoryShortcut = category.getCategoryShortcut();
         this.categoryTitle = category.getCategoryTitle();
         this.description = category.getDescription();
-        this.recipes = category.getRecipes();
     }
 
     public Long getId() {
@@ -54,11 +48,4 @@ public class CategoryDto {
         this.description = description;
     }
 
-    public List<Recipe> getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(List<Recipe> recipes) {
-        this.recipes = recipes;
-    }
 }

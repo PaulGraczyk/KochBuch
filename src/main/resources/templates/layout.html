@@ -16,7 +16,7 @@
     <title>KochBuch</title>
 </head>
 <body>
-<nav id="navbar" class="navbar navbar-expand-lg position-fixed top-0 w-100 py-3">
+<nav id="navbar" class="navbar bg-dark navbar-expand-lg top-0 w-100 py-3">
     <div class="container">
         <a class="navbar-brand" th:href="@{/}"><i class="fa-solid fa-book"></i> koch<span
                 class="blue-text">buch!</span></a>
@@ -42,7 +42,7 @@
 <main layout:fragment="content"></main>
 
 
-<footer class="bg-dark text-light py-4 text-center">
+<footer class="bg-dark py-4 text-center">
     <p class="mb-8" th:text="|&copy; ${#dates.year(#dates.createNow())}  KochBuch|">&copy;</p>
 </footer>
 

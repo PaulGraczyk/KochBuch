@@ -62,7 +62,6 @@ main .table-responsive table a {
 }
 
 
-
 main .hero-img, main .vege-hero-img, main .meat-hero-img, main .dumplings-hero-img, main .other-hero-img, main .add-form-hero-img,
 main .all-hero-img {
     position: relative;
@@ -124,6 +123,10 @@ main .hero-text {
     z-index: 5;
 }
 
+footer {
+    color: orange;
+}
+
 @media (min-width: 1200px) {
     main .hero-img, header .all-hero-img {
         background-image: url('../img/hero-img-big.jpg');
@@ -145,3 +148,4 @@ main .hero-text {
         background-image: url('../img/add-recipe-big.jpg');
     }
 }
+
