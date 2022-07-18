@@ -7,16 +7,18 @@ public class RecipeDescriptionDto {
     private String ingredients;
     private String description;
     private Long categoryId;
+    private boolean isGlutenFree;
 
     public RecipeDescriptionDto() {
     }
 
-    public RecipeDescriptionDto(Long id, String recipeName, String ingredients, String description, Long categoryId) {
+    public RecipeDescriptionDto(Long id, String recipeName, String ingredients, String description, Long categoryId, boolean isGlutenFree) {
         this.id = id;
         this.recipeName = recipeName;
         this.ingredients = ingredients;
         this.description = description;
         this.categoryId = categoryId;
+        this.isGlutenFree = isGlutenFree;
     }
 
     public Long getId() {
@@ -57,5 +59,13 @@ public class RecipeDescriptionDto {
 
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public boolean isGlutenFree() {
+        return isGlutenFree;
+    }
+
+    public void setGlutenFree(boolean glutenFree) {
+        isGlutenFree = glutenFree;
     }
 }

@@ -1,15 +1,19 @@
 package com.example.kochbuch.recipe;
 
+import java.time.LocalDate;
+
 public class RecipeItemListDto {
 
     private Long id;
     private String recipeName;
     private int numberOfLikes;
+    private LocalDate dateAdded;
 
     public RecipeItemListDto(Recipe recipe) {
         this.id = recipe.getId();
         this.recipeName = recipe.getRecipeName();
         this.numberOfLikes = recipe.getNumberOfLikes();
+        this.dateAdded = recipe.getDateAdded();
     }
 
     public Long getId() {
@@ -34,6 +38,14 @@ public class RecipeItemListDto {
 
     public void setNumberOfLikes(int numberOfLikes) {
         this.numberOfLikes = numberOfLikes;
+    }
+
+    public LocalDate getDateAdded() {
+        return dateAdded;
+    }
+
+    public void setDateAdded(LocalDate dateAdded) {
+        this.dateAdded = dateAdded;
     }
 }
 

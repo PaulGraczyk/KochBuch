@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+    <include file="0001_create_table_category.xml" relativeToChangelogFile="true" />
+    <include file="0002_create_table_recipe.xml" relativeToChangelogFile="true" />
+    <include file="0003_alter_table_recipe_add_columns_date_is_gluten_free.xml" relativeToChangelogFile="true"/>
+    <include file="testdata/testdata.sql" relativeToChangelogFile="true" context="dev"/>
+</databaseChangeLog>
+
