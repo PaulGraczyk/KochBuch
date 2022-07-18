@@ -3,6 +3,8 @@ package com.example.kochbuch.recipe;
 import com.example.kochbuch.category.Category;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Recipe {
@@ -17,16 +19,21 @@ public class Recipe {
     private int numberOfLikes;
     @ManyToOne
     private Category category;
+    private LocalDate dateAdded;
+
+    private boolean isGlutenFree;
 
     public Recipe() {
     }
 
-    public Recipe(String recipeName, String ingredients, String description, Category category) {
+    public Recipe(String recipeName, String ingredients, String description, Category category, boolean isGlutenFree) {
         this.recipeName = recipeName;
         this.ingredients = ingredients;
         this.description = description;
         this.numberOfLikes = 0;
         this.category = category;
+        this.dateAdded = LocalDate.now();
+        this.isGlutenFree = isGlutenFree;
     }
 
     public Long getId() {
@@ -77,6 +84,25 @@ public class Recipe {
         this.category = category;
     }
 
+    public LocalDate getDateAdded() {
+        return dateAdded;
+    }
+
+    public void setDate(LocalDate timeAdded) {
+        this.dateAdded = timeAdded;
+    }
+
+    public void setDateAdded(LocalDate dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    public boolean isGlutenFree() {
+        return isGlutenFree;
+    }
+
+    public void setGlutenFree(boolean glutenFree) {
+        isGlutenFree = glutenFree;
+    }
 }
 
 

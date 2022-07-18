@@ -45,7 +45,7 @@ public class KochBuchService {
     public RecipeDescriptionDto findRecipeById(Long id) {
         Recipe recipe = recipeRepository.findById(id).orElseThrow(RecipeNotFoundException::new);
         return new RecipeDescriptionDto(recipe.getId(), recipe.getRecipeName(), recipe.getIngredients(), recipe.getDescription(),
-                recipe.getCategory().getId());
+                recipe.getCategory().getId(), recipe.isGlutenFree());
     }
 
     public List<RecipeItemListDto> findTopRecipes(int size) {
@@ -61,7 +61,8 @@ public class KochBuchService {
         Recipe recipe = new Recipe(recipeDto.getRecipeName(),
                 recipeDto.getIngredients(),
                 recipeDto.getDescription(),
-                category);
+                category,
+                recipeDto.isGlutenFree());
         recipeRepository.save(recipe);
     }
 
@@ -75,13 +76,13 @@ public class KochBuchService {
         recipe.setIngredients(recipeDto.getIngredients());
         recipe.setDescription(recipeDto.getDescription());
         recipe.setCategory(category);
+        recipe.setGlutenFree(recipeDto.isGlutenFree());
     }
 
     @Transactional
     public void deleteRecipeById(Long id) {
         recipeRepository.deleteById(id);
     }
-
 
     public void addLikeToRecipe(Long recipeId) {
         Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(RecipeNotFoundException::new);

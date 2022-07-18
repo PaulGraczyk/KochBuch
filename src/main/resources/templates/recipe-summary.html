@@ -14,6 +14,7 @@
         <div class="hero-text">
             <div class="container">
                 <h1 th:text="*{recipeName}">Tytuł</h1>
+                <p th:text="|${recipe.isGlutenFree ? 'Wolny od glutenu.': 'Z glutenem.'}|">Glutenoza</p>
                 <p th:text="*{'Składniki: '+ ingredients}"></p>
                 <p th:text="*{description}">Opis</p>
                 <form th:action="@{/give-like}" th:method="post" id="like-form">
