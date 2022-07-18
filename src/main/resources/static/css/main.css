@@ -1,0 +1,151 @@
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #444;
+}
+
+
+nav {
+    text-transform: uppercase;
+    z-index: 1;
+}
+
+nav i {
+    color: #f0ad4e;
+}
+
+nav .navbar-nav  a:hover {
+    color: white;
+}
+
+nav .container a {
+    color: orange;
+}
+
+nav .navbar-brand {
+    font-weight: bold;
+}
+
+main {
+    text-transform: uppercase;
+    color: #f0ad4e;
+}
+
+main h1 {
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+main p {
+    font-size: 14px;
+}
+
+main .table-responsive table {
+    color: orange;
+}
+
+main .table-responsive table a {
+    width: 100%;
+    height: 100%;
+    display: block;
+    text-decoration: none;
+    color: orange;
+}
+
+
+main .hero-img, main .vege-hero-img, main .meat-hero-img, main .dumplings-hero-img, main .other-hero-img, main .add-form-hero-img,
+main .all-hero-img {
+    position: relative;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: 0;
+}
+
+main .hero-img, header .all-hero-img  {
+    background-image: url('../img/hero-img-small.jpg');
+}
+
+main .vege-hero-img {
+    background-image: url('../img/vege-small.jpg');
+}
+
+main .meat-hero-img {
+    background-image: url('../img/meat-small.jpg');
+}
+
+main .dumplings-hero-img {
+    background-image: url('../img/dumplings-small.jpg');
+}
+
+main .other-hero-img {
+    background-image: url('../img/other-small.jpg');
+}
+
+main .add-form-hero-img{
+    background-image: url('../img/add-recipe-small.jpg');
+}
+
+main .bg-shadow {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: -10;
+}
+
+main .hero-text {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100%;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    text-align: center;
+    z-index: 5;
+}
+
+footer {
+    color: orange;
+}
+
+@media (min-width: 1200px) {
+    main .hero-img, header .all-hero-img {
+        background-image: url('../img/hero-img-big.jpg');
+    }
+    main .vege-hero-img {
+        background-image: url('../img/vege-big.jpg');
+    }
+    main .meat-hero-img {
+        background-image: url('../img/meat-big.jpg');
+    }
+    main .dumplings-hero-img {
+        background-image: url('../img/dumplings-big.jpg');
+    }
+    main .other-hero-img {
+        background-image: url('../img/other-big.jpg');
+    }
+
+    main .add-form-hero-img {
+        background-image: url('../img/add-recipe-big.jpg');
+    }
+}
+
