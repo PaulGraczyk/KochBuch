@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+    <changeSet id="0003_alter_table_recipe_add_columns_date_is_gluten_free" author="paul">
+       <addColumn tableName="recipe">
+           <column name="date_added" type="DATE"/>
+       </addColumn>
+        <addColumn tableName="recipe">
+            <column name="is_gluten_free" type="BOOLEAN"/>
+        </addColumn>
+
+    </changeSet>
+</databaseChangeLog>

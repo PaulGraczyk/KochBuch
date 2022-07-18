@@ -36,6 +36,10 @@
                                 th:value="${categoryValue.id}" th:text="${categoryValue.categoryTitle}"></option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="gluten-free-check">Czy wolny od glutenu?</label>
+                    <input type="checkbox" th:checked="*{glutenFree}" th:field="*{glutenFree}" id="gluten-free-check">
+                </div>
                 <input type="hidden" th:field="*{id}"/>
                 <button type="submit" class="btn btn-outline-warning">Zapisz</button>
             </form>

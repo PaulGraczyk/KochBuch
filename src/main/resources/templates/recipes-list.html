@@ -20,12 +20,14 @@
                     <tr>
                         <th scope="col">Nazwa</th>
                         <th scope="col">Polubienia</th>
+                        <th scope="col">Czas dodania</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="recipe: ${recipes}" th:object="${recipe}">
                         <td><a th:text="*{recipeName}" th:href="@{/recipe-summary/{recipeId}(recipeId=*{id})}"></a></td>
                         <td th:text="'Polubienia: ' + *{numberOfLikes}"> Polubienia</td>
+                        <td th:text="'Data dodania: ' + *{dateAdded}">Data dodania</td>
                     </tr>
                     </tbody>
                 </table>
